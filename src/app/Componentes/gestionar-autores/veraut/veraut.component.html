@@ -1,0 +1,90 @@
+<div class="container" id="ver" hidden>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 has-text-centered">
+                            <div class="text-center">
+                                <h3>Autores.</h3>
+                            </div>
+                            <hr>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>AutorId</th>
+                                        <th>Nombres completos</th>
+                                        <th>Fecha de nacimiento</th>
+                                        <th>Ciudad de procedencia</th>
+                                        <th>Correo electrónico</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let autor of Autores" class="table-light">
+                                        <td>{{autor.AutorId_}}</td>
+                                        <td>{{autor.Nombrescompletos_}}</td>
+                                        <td>{{autor.Fechadenacimiento_ | date:"shortDate"}}</td>
+                                        <td>{{autor.Ciudaddeprocedencia_}}</td>
+                                        <td>{{autor.Correoelectronico_}}</td>
+                                        <td style="text-align: center;" class="table-warning">
+                                            <a title="Modificar autor" (click)="AbrirModalModificarAutor(autor, contenido, true)">
+                                                <span class="material-icons has-text-warning">cached</span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h3 class="modal-title text-center">INFORMACIÓN DE AUTOR.</h3>
+        <button class="close btn btn-light" aria-label="close" type="button" (click)="serviciomodal.dismissAll()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <form>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="Nombrescompletos" aria-describedby="nombresyapellido" 
+                        placeholder="campo obligatorio" name="Nombrescompletos" [(ngModel)]="Nombrescompletos"
+                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Nombrescompletos', 50)">
+                        <small id="Nombrescompletos" class="form-text text-muted">Sus primer nombre y primer apellido</small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="date" class="form-control" id="Fechadenacimiento" aria-describedby="nombresyapellido" 
+                        placeholder="campo obligatorio" name="Fechadenacimiento" [(ngModel)]="Fechadenacimiento">
+                        <small id="Fechadenacimiento" class="form-text text-muted">Fecha de nacimiento</small>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 3%;">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="Ciudaddeprocedencia" aria-describedby="nombresyapellido" 
+                        placeholder="campo obligatorio" name="Ciudaddeprocedencia" [(ngModel)]="Ciudaddeprocedencia"
+                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Ciudaddeprocedencia', 35)">
+                        <small id="Ciudaddeprocedencia" class="form-text text-muted">Ciudad de procedencia</small>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="Correoelectronico" aria-describedby="nombresyapellido" 
+                        placeholder="campo obligatorio" name="Correoelectronico" [(ngModel)]="Correoelectronico"
+                        (keypress)="ValidarMaxLength($event, 'Correoelectronico', 50)">
+                        <small id="Correoelectronico" class="form-text text-muted">Correo electrónico</small>
+                    </div>
+                </div>  
+                <div class="row" style="margin-top: 3%;">
+                    <div class="form-group col-md-12">
+                        <button id="modificar" type="button" class="btn btn-success button-block" (click)="ValidarParaModificar()">Modificar información</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer"></div>
+</ng-template>

@@ -1,0 +1,74 @@
+<div class="container" id="registrar">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card" style="margin-bottom: 2%;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form>
+                                <div class="text-center">
+                                    <h3>Registrar Autores</h3>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" id="Nombrescompletos" aria-describedby="nombresyapellido" 
+                                        placeholder="campo obligatorio" name="Nombrescompletos" [(ngModel)]="Nombrescompletos"
+                                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Nombrescompletos', 50)">
+                                        <small id="Nombrescompletos" class="form-text text-muted">Sus primer nombre y primer apellido</small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="date" class="form-control" id="Fechadenacimiento" aria-describedby="nombresyapellido" 
+                                        placeholder="campo obligatorio" name="Fechadenacimiento" [(ngModel)]="Fechadenacimiento">
+                                        <small id="Fechadenacimiento" class="form-text text-muted">Fecha de nacimiento</small>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 3%;">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" id="Ciudaddeprocedencia" aria-describedby="nombresyapellido" 
+                                        placeholder="campo obligatorio" name="Ciudaddeprocedencia" [(ngModel)]="Ciudaddeprocedencia"
+                                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Ciudaddeprocedencia', 35)">
+                                        <small id="Ciudaddeprocedencia" class="form-text text-muted">Ciudad de procedencia</small>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" id="Correoelectronico" aria-describedby="nombresyapellido" 
+                                        placeholder="campo obligatorio" name="Correoelectronico" [(ngModel)]="Correoelectronico"
+                                        (keypress)="ValidarMaxLength($event, 'Correoelectronico', 50)">
+                                        <small id="Correoelectronico" class="form-text text-muted">Correo electrónico</small>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 1%;">
+                                    <div class="form-group col-md-12">
+                                        <button type="button" class="btn btn-primary button-block" (click)="ValidarParaRegistrar()">Registrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 has-text-centered">
+                            <div class="text-center">
+                                <h3>Autores</h3>
+                            </div>
+                            <hr>
+                            <table class="table table-bordered">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nombres completos</th>
+                                    <th scope="col">Correo electrónico</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let autor of Autores">
+                                    <td>-</td>
+                                    <td>{{autor.Nombrescompletos_}}</td>
+                                    <td>{{autor.Correoelectronico_}}</td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

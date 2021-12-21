@@ -1,0 +1,103 @@
+<div class="container" id="registrar">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card" style="margin-bottom: 2%;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form>
+                                <div class="text-center">
+                                    <h3>Registrar Genero</h3>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control" id="Nombre" aria-describedby="nombre" 
+                                        placeholder="campo obligatorio" name="Nombre" [(ngModel)]="Nombre"
+                                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Nombre', 25)">
+                                        <small id="Nombre" class="form-text text-muted">Nombre del género</small>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 2%;">
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control" id="Descripcion" aria-describedby="descripcion" 
+                                        placeholder="campo opcional" name="Descripcion" [(ngModel)]="Descripcion"
+                                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Descripcion', 50)">
+                                        <small id="Descripcion" class="form-text text-muted">Descripcion del género</small>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 1%;">
+                                    <div class="form-group col-md-12">
+                                        <button type="button" class="btn btn-primary button-block" (click)="ValidarParaRegistrar()">Registrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-8 has-text-centered">
+                            <div class="text-center">
+                                <h3>Géneros</h3>
+                            </div>
+                            <hr>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>GeneroId</th>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let genero of Generos" class="table-light">
+                                        <td>{{genero.GeneroId_}}</td>
+                                        <td>{{genero.Nombre_}}</td>
+                                        <td>{{genero.Descripcion_}}</td>
+                                        <td style="text-align: center;" class="table-warning">
+                                            <a title="Modificar genero" (click)="AbrirModalModificarGenero(genero, contenido, true)">
+                                                <span class="material-icons has-text-warning">cached</span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h3 class="modal-title text-center">INFORMACIÓN DE GENERO.</h3>
+        <button class="close btn btn-light" aria-label="close" type="button" (click)="serviciomodal.dismissAll()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <form>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" id="Nombre_mod" aria-describedby="ombre_mod" 
+                        placeholder="campo obligatorio" name="Nombre_mod" [(ngModel)]="Nombre_mod"
+                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Nombre_mod', 25)">
+                        <small id="Nombre_mod" class="form-text text-muted">Nuevo nombre del género</small>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 2%;">
+                    <div class="form-group col-md-12">
+                        <input type="text" class="form-control" id="Descripcion_mod" aria-describedby="descripcion_mod" 
+                        placeholder="campo opcional" name="Descripcion_mod" [(ngModel)]="Descripcion_mod"
+                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Descripcion_mod', 50)">
+                        <small id="Descripcion_mod" class="form-text text-muted">Nueva descripcion del género</small>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 3%;">
+                    <div class="form-group col-md-12">
+                        <button id="modificar" type="button" class="btn btn-success button-block" (click)="ValidarParaModificar()">Modificar información</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer"></div>
+</ng-template>

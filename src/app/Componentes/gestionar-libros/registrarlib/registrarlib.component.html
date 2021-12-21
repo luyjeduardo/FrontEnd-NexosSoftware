@@ -1,0 +1,151 @@
+<div class="container" id="registrar">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card" style="margin-bottom: 2%;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form>
+                                <div class="text-center">
+                                    <h3>Registrar Libro</h3>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <input type="text" class="form-control" id="Titulo" aria-describedby="Titulo"
+                                            placeholder="campo obligatorio" name="Titulo" [(ngModel)]="Titulo"
+                                            (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Titulo', 25)">
+                                        <small id="Titulo" class="form-text text-muted">Titulo del libro</small>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top: 2%;">
+                                        <input type="number" class="form-control" id="Anio" aria-describedby="Anio"
+                                            placeholder="campo obligatorio" name="Anio" [(ngModel)]="Anio"
+                                            (keypress)="ValidarCaracteresNumericosYMaxLength($event, 'Anio', 4)">
+                                        <small id="Anio" class="form-text text-muted">Año de la public. del
+                                            libro</small>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top: 2%;">
+                                        <input type="number" class="form-control" id="Numerodepaginas"
+                                            aria-describedby="Numerodepaginas" placeholder="campo obligatorio"
+                                            name="Numerodepaginas" [(ngModel)]="Numerodepaginas"
+                                            (keypress)="ValidarCaracteresNumericosYMaxLength($event, 'Numerodepaginas', 8)">
+                                        <small id="Numerodepaginas" class="form-text text-muted">Número de paginas del
+                                            libro</small>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top: 2%;">
+                                        <select class="form-select" id="autor" aria-label="Default select example">
+                                            <option selected value="">Seleccione el autor</option>
+                                            <option *ngFor="let autor of Autores" value={{autor.AutorId_}}>
+                                                {{autor.Nombrescompletos_}}</option>
+                                        </select>
+                                        <small id="autor" class="form-text text-muted">Seleccione el Autor del
+                                            libro</small>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top: 2%;">
+                                        <select class="form-select" id="genero" aria-label="Default select example">
+                                            <option selected value="">Seleccione el género</option>
+                                            <option *ngFor="let genero of Generos" value={{genero.GeneroId_}}>
+                                                {{genero.Nombre_}}</option>
+                                        </select>
+                                        <small id="autor" class="form-text text-muted">Seleccione el género del
+                                            libro</small>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 3%; margin-bottom: 2%;">
+                                    <div class="form-group col-md-12">
+                                        <button type="button" class="btn btn-primary button-block"
+                                            (click)="ValidarParaRegistrar()">Registrar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-8 has-text-centered">
+                            <div class="text-center">
+                                <h3>Libros</h3>
+                            </div>
+                            <hr>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Titulo</th>
+                                        <th>Año</th>
+                                        <th>Autor</th>
+                                        <th>Genero</th>
+                                        <th># páginas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let libro of Libros" class="table-light">
+                                        <td>{{libro.Titulo_}}</td>
+                                        <td>{{libro.Anio_}}</td>
+                                        <td><strong>{{libro.Autor_.Nombrescompletos_}}</strong></td>
+                                        <td><strong>{{libro.Genero_.Nombre_}}</strong></td>
+                                        <td>{{libro.Numerodepaginas_}}</td>
+                                        <td style="text-align: center;" class="table-warning">
+                                            <a title="Modificar Libro"
+                                                (click)="AbrirModalModificarLibro(libro, contenido, true)">
+                                                <span class="material-icons has-text-warning">cached</span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h3 class="modal-title text-center">INFORMACIÓN DEL LIBRO.</h3>
+        <button class="close btn btn-light" aria-label="close" type="button" (click)="serviciomodal.dismissAll()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <form>
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control" id="Titulo_mod" aria-describedby="Titulo_mod"
+                        placeholder="campo obligatorio" name="Titulo_mod" [(ngModel)]="Titulo_mod"
+                        (keypress)="ValidarCaracteresAlfabeticosYMaxLength($event, 'Titulo_mod', 25)">
+                    <small id="Titulo" class="form-text text-muted">Titulo del libro</small>
+                </div>
+                <div class="form-group col-md-12" style="margin-top: 2%;">
+                    <input type="number" class="form-control" id="Anio_mod" aria-describedby="Anio_mod"
+                        placeholder="campo obligatorio" name="Anio_mod" [(ngModel)]="Anio_mod"
+                        (keypress)="ValidarCaracteresNumericosYMaxLength($event, 'Anio_mod', 4)">
+                    <small id="Anio" class="form-text text-muted">Año de la public. del libro</small>
+                </div>
+                <div class="form-group col-md-12" style="margin-top: 2%;">
+                    <input type="number" class="form-control" id="Numerodepaginas_mod" aria-describedby="Numerodepaginas_mod"
+                        placeholder="campo obligatorio" name="Numerodepaginas_mod" [(ngModel)]="Numerodepaginas_mod"
+                        (keypress)="ValidarCaracteresNumericosYMaxLength($event, 'Numerodepaginas_mod', 8)">
+                    <small id="Numerodepaginas" class="form-text text-muted">Número de paginas del libro</small>
+                </div>
+                <div class="form-group col-md-12" style="margin-top: 2%;">
+                    <select class="form-select" id="autor_mod" aria-label="Default select example">
+                        <option value="">Seleccione el autor</option>
+                        <option *ngFor="let autor of Autores" value={{autor.AutorId_}}>{{autor.Nombrescompletos_}}
+                        </option>
+                    </select>
+                    <small class="form-text text-muted">Seleccione el Autor del libro</small>
+                </div>
+                <div class="form-group col-md-12" style="margin-top: 2%;">
+                    <select class="form-select" id="genero_mod" aria-label="Default select example">
+                        <option value="">Seleccione el género</option>
+                        <option *ngFor="let genero of Generos" value={{genero.GeneroId_}}>{{genero.Nombre_}}</option>
+                    </select>
+                    <small class="form-text text-muted">Seleccione el género del libro</small>
+                </div>
+                <div class="row" style="margin-top: 3%;">
+                    <div class="form-group col-md-12">
+                       <button id="modificar" type="button" class="btn btn-success button-block" (click)="ValidarParaModificar()">Modificar información</button>
+                   </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer"></div>
+</ng-template>

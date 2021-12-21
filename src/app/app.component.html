@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <a class="navbar-brand" style="margin-left: 1%;" routerLink="principal">Nexos-Software:</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="gestionarautores" title="Gestionar autores">Gestionar Autores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="gestionargeneros" title="Gestionar géneros">Gestionar Géneros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="gestionarlibros" title="Gestionar libros">Gestionar Libros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="consultas" title="Consultas generales">Consultas generales</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<router-outlet></router-outlet>
